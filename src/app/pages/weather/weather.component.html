@@ -1,0 +1,11 @@
+<div>
+  <div>
+    <span>{{ weather.city }}, {{ weather.country }}</span>
+    <span>{{ weather.date | date: "fullDate" }}</span>
+  </div>
+  <div>
+    <img [src]="weather.image" />
+    <span>{{ weather.temperature | number: "1.0-0" }}°F</span>
+  </div>
+  <div>{{ weather.description }}</div>
+</div>

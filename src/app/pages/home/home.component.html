@@ -1,0 +1,61 @@
+<div class="p-2">
+  <a routerLink="/component-interaction">Component Interaction Example</a>
+</div>
+
+<app-sib-one></app-sib-one>
+<app-sib-two></app-sib-two>
+
+<div class="container">
+  <div class="col">
+    <!-- <my-component [textColor]="textColor"></my-component> -->
+  </div>
+  <div class="col">Column B</div>
+  <div class="col">Column C</div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col" *ngIf="showLoading">
+      <span class="btn btn-sm btn-warning">
+        <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+        Loading...
+      </span>
+    </div>
+    <div class="col" *ngIf="showData">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">User Name</th>
+            <th scope="col">Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of userData">
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <!--
+        <button class="btn btn-primary" (click)="onClickMe()">Show Users</button>
+      -->
+      <button mat-button color="primary" (click)="onClickMe()">
+        Show Users
+      </button>
+
+      <div class="dir-wrapper" testDir>Change Color</div>
+
+      <!-- <input [(ngModel)]="cn" /> {{ cn }} -->
+
+      <img ccLogo [cardNumber]="ccValue" />
+    </div>
+  </div>
+</div>

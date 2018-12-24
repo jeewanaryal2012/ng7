@@ -1,0 +1,7 @@
+<div>
+  <p [ngStyle]="{ color: childTextColor }" (click)="handleChildButton($event)">
+    This is from child component {{ childTextColor }} {{ childWarningNumber }}
+  </p>
+
+  <button mat-button color="primary" [disabled]="false">Button OK</button>
+</div>

@@ -1,0 +1,8 @@
+<ul>
+  <li *ngFor="let p of pageItems">
+    {{p.id}} : {{p.description}}
+  </li>
+</ul>
+
+<button mat-button color="primary" (click)="prev()" *ngIf="hidePrev">Prev</button>
+<button mat-button color="primary" (click)="next()" *ngIf="hideNext">Next</button>

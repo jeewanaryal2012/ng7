@@ -1,0 +1,23 @@
+<app-child
+  [childTextColor]="parentTextColor"
+  [childWarningNumber]="parentWarningNumber"
+  (notify)="onNotify($event)"
+></app-child>
+
+<p
+  class="tool"
+  (mouseenter)="openTooltip($event)"
+  (mouseleave)="closeTooltip($event)"
+>
+  Hover for more info
+</p>
+<div *ngIf="showTool" class="tool-tip-wrapper">
+  <app-tooltip
+    class="tool-tip"
+    [content]="
+      'This is the content from the tooltip. This is a customized tooltip.'
+    "
+    [pos]="contentPosition"
+    [ttColor]="'#666666'"
+  ></app-tooltip>
+</div>

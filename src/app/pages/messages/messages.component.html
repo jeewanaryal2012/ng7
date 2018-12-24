@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <mat-grid-list cols="12" rowHeight="1:4">
+        <!-- Left -->
+        <mat-grid-tile [colspan]="4">
+          <!-- <a class="nav-link" routerLink="detail" routerLinkActive="active">Detail</a> -->
+          <ul email-left>
+            <li>
+              <app-ja-header [title]="'Emails List'" [color]="'#666666'" [fontSize]="'1.4rem'"></app-ja-header>
+            </li>
+            <li *ngFor="let email of result">
+              <a class="nav-link" routerLink="detail/{{email.id}}" routerLinkActive="active" (click)="storeEmail(email)">
+                <span class="email-index">[{{email.id}}]</span>
+                <span class="email-subject">{{email.subject}}</span>
+              </a>
+            </li>
+          </ul>
+        </mat-grid-tile>
+
+        <!-- Right -->
+        <mat-grid-tile [colspan]="8" *ngIf="showBrief">
+          show here brief
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="8" *ngIf="!showBrief">
+          <router-outlet></router-outlet>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+    </div>
+  </div>
+</div>
