@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="left-wrapper">
+        <ul>
+          <li *ngFor="let u of userList">
+            <span>
+              <input type="checkbox" [value]="u.name" (change)="checkChanged($event, u)" [checked]="checkArray.indexOf(u.id) !== -1" />
+            </span>
+            <span>{{u.id}} - {{u.name}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="right-wrapper">
+        <ul>
+          <li *ngFor="let u of selectedList">
+            <span>{{u.id}} - {{u.name}}</span>
+            <span (click)="remove(u)">X</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>

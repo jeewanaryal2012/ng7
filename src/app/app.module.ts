@@ -10,7 +10,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   MatButtonModule, MatCheckboxModule, MatGridListModule, MatTableModule,
-  MatInputModule, MatFormFieldModule, MatPaginatorModule, MatSortModule, MatSnackBarModule, MatDialogModule
+  MatInputModule, MatFormFieldModule, MatPaginatorModule, MatSortModule,
+  MatSnackBarModule, MatDialogModule, MatMenuModule, MatIconModule
 } from "@angular/material";
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -43,6 +44,9 @@ import { AgGridModule } from 'ag-grid-angular';
 import { AgTableComponent } from './pages/ag-table/ag-table.component';
 import { SnackBarComponent } from './component/snack-bar/snack-bar.component';
 import { ErrorBoxComponent } from './component/error-box/error-box.component';
+import { UnauthorizeComponent } from './pages/unauthorize/unauthorize.component';
+import { LoginComponent } from './pages/login/login.component';
+import { ListComponent } from './pages/list/list.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +71,13 @@ import { ErrorBoxComponent } from './component/error-box/error-box.component';
     AgTableComponent,
     SnackBarComponent,
 
-    ErrorBoxComponent
+    ErrorBoxComponent,
+
+    UnauthorizeComponent,
+
+    LoginComponent,
+
+    ListComponent
   ],
   imports: [
     BrowserModule,
@@ -89,6 +99,8 @@ import { ErrorBoxComponent } from './component/error-box/error-box.component';
     MatSortModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatMenuModule,
+    MatIconModule,
 
     FormsModule,
     ReactiveFormsModule,
@@ -103,6 +115,6 @@ import { ErrorBoxComponent } from './component/error-box/error-box.component';
     }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [SnackBarComponent, ErrorBoxComponent]
+  entryComponents: [SnackBarComponent, ErrorBoxComponent, JaHeaderComponent]
 })
 export class AppModule { }

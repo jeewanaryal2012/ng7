@@ -8,6 +8,8 @@ import { SnackBarComponent } from "../../component/snack-bar/snack-bar.component
 
 import { TableService } from "../../services/table.service";
 
+import { JaHeaderComponent } from "../../component/ja-header/ja-header.component";
+
 @Component({
   selector: 'app-ag-table',
   templateUrl: './ag-table.component.html',
@@ -43,6 +45,7 @@ export class AgTableComponent implements OnInit {
 
   agForm: FormGroup;
   submitted = false;
+  private defaultColDef;
 
   constructor(private _formBuilder: FormBuilder, private _tableService: TableService, public snackBar: MatSnackBar) { }
 
@@ -57,10 +60,47 @@ export class AgTableComponent implements OnInit {
 
   onGridReady(e) {
     this.columnDefs = [
-      { headerName: 'ID', field: 'id', editable: true },
-      { headerName: 'Name', field: 'name', checkboxSelection: true, editable: true },
-      { headerName: 'Progress', field: 'progress' },
-      { headerName: 'Color', field: 'color' }
+      { headerName: 'ID', field: 'id', editable: true, cellRendererFramework: JaHeaderComponent },
+      {
+        headerName: 'Name', field: 'name', checkboxSelection: true, editable: true,
+        /*
+        cellRenderer: () => {
+          return "<span>0</span>";
+        },
+        */
+        cellStyle: (params) => {
+          console.log(params);
+          if (params.data.progress % 3 === 0 && params.data.progress % 5 !== 0) {
+            return { color: "red" }
+          }
+          if (params.data.progress % 5 === 0 && params.data.progress % 3 !== 0) {
+            return { color: "green" }
+          }
+          if (params.data.progress % 3 === 0 && params.data.progress % 5 === 0) {
+            return { color: "blue" }
+          } else {
+            return { color: "black", fontWeight: "bold" }
+          }
+        }
+      },
+      {
+        headerName: 'Progress', field: 'progress', editable: true,
+        //template: `<span style="color: green;">hello</span>`,
+        cellRenderer: params => {
+          return `<div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuenow="${params.value}" aria-valuemin="0" aria-valuemax="100" style="width:${params.value}%">
+            <span>${params.value}%</span>
+          </div>
+        </div>`
+        }
+      },
+      {
+        headerName: 'Color', field: 'color', editable: true,
+        valueFormatter: this.currencyFormatter,
+        tooltip: function (params) {
+          return (params.valueFormatted);
+        },
+      }
     ];
 
     /*
@@ -71,6 +111,17 @@ export class AgTableComponent implements OnInit {
     ];
     */
     this.fetData();
+  }
+
+  currencyFormatter(params) {
+    return "$ " + (params.value);
+  }
+
+  onCellClicked(e) {
+
+    if (e.colDef.field === "id") {
+      console.log(e);
+    }
   }
 
   openSnackBar() {
@@ -146,10 +197,13 @@ export class AgTableComponent implements OnInit {
   }
 
   cellEdited(e) {
+    console.log(e.data);
+    /*
     this._tableService.postUsers(e.data).subscribe((d) => {
       this.fetData();
       this.openSnackBar();
     });
+    */
   }
 
 }

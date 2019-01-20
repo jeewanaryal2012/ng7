@@ -7,16 +7,22 @@ import { WeatherComponent } from "../pages/weather/weather.component";
 import { MessagesComponent } from "../pages/messages/messages.component";
 import { MessageDetailsComponent } from "../pages/messages/message-details/message-details.component";
 
+import { UnauthorizeComponent } from "../pages/unauthorize/unauthorize.component";
 import { ParentComponent } from "../core/component-interaction/parent/parent.component";
 
 import { TableComponent } from "../pages/table/table.component";
 import { AgTableComponent } from "../pages/ag-table/ag-table.component";
 
+import { LoginComponent } from "../pages/login/login.component";
+import { ListComponent } from "../pages/list/list.component";
+
+import { AuthGuard } from '../guards/auth-guard.service';
+
 export const appRoutes: Routes = [
   { path: "test", component: TestComponent },
   { path: "test/:id", component: TestComponent },
   { path: "home", component: HomeComponent },
-  { path: "", component: HomeComponent },
+
   { path: "contact", component: ContactComponent },
   {
     path: "component-interaction",
@@ -33,5 +39,14 @@ export const appRoutes: Routes = [
   },
   {
     path: "ag-table", component: AgTableComponent
-  }
+    //, canActivate: [AuthGuard]
+  },
+  {
+    path: "list", component: ListComponent
+  },
+  {
+    path: "unauthorize", component: UnauthorizeComponent
+  },
+  { path: "login", component: LoginComponent },
+  { path: "", component: LoginComponent },
 ];

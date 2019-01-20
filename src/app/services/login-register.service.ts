@@ -1,0 +1,14 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class LoginRegisterService {
+
+  constructor(private _http: HttpClient) { }
+
+  login() {
+    return this._http.get("http://localhost:8081/login");
+  }
+}
